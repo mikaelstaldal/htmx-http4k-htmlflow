@@ -1,6 +1,6 @@
 # htmx with http4k and HtmlFlow
 
-Using [htmx](https://htmx.org/) with [http4k](https://www.http4k.org/) and [HtmlFlow](https://htmlflow.org/).
+Incomplete attempt of using [htmx](https://htmx.org/) with [http4k](https://www.http4k.org/) and [HtmlFlow](https://htmlflow.org/).
 
 ## Building
 
