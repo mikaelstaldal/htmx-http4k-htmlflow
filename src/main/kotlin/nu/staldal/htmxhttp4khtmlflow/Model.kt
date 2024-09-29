@@ -1,4 +1,4 @@
-package nu.staldal.htmxhttp4kdsl
+package nu.staldal.htmxhttp4khtmlflow
 
 data class Person(val firstName: String, val lastName: String, val email: String)
 

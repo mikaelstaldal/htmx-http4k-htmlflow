@@ -1,4 +1,4 @@
-package nu.staldal.htmxhttp4kdsl
+package nu.staldal.htmxhttp4khtmlflow
 
 import java.util.UUID
 

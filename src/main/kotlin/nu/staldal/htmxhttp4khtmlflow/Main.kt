@@ -1,29 +1,18 @@
-package nu.staldal.htmxhttp4kdsl
+package nu.staldal.htmxhttp4khtmlflow
 
-import kotlinx.html.stream.createHTML
-import org.http4k.core.Method.DELETE
 import org.http4k.core.Method.GET
-import org.http4k.core.Method.PATCH
-import org.http4k.core.Method.POST
-import org.http4k.core.Method.PUT
-import org.http4k.core.Request
 import org.http4k.core.Response
 import org.http4k.core.Status
-import org.http4k.core.Status.Companion.CREATED
-import org.http4k.core.Status.Companion.NOT_FOUND
 import org.http4k.core.Status.Companion.OK
-import org.http4k.core.isHtmx
 import org.http4k.core.then
 import org.http4k.filter.ServerFilters
 import org.http4k.routing.ResourceLoader
-import org.http4k.routing.Router.Companion.orElse
 import org.http4k.routing.bind
 import org.http4k.routing.htmxWebjars
 import org.http4k.routing.routes
 import org.http4k.routing.static
 import org.http4k.server.SunHttp
 import org.http4k.server.asServer
-import java.util.UUID
 
 private const val port = 8000
 
@@ -32,15 +21,15 @@ fun main() {
 
     val app = routes(
         "/" bind GET to {
-            htmlPage { index() }
+            htmlResponse(OK, index(), Unit)
         },
         "/click-to-edit" bind GET to {
-            htmlPage { clickToEdit(dataStore.person) }
+            htmlResponse(OK, clickToEdit(), dataStore.person)
         },
+        /*
         "/bulk-update" bind GET to {
-            htmlPage { bulkUpdate(dataStore.contacts.values) }
+            htmlPage(OK, bulkUpdate(dataStore.contacts.values))
         },
-
         "/click-to-load" bind GET to routes(
             Request.isHtmx bind { request ->
                 val page = pageLens(request)
@@ -75,19 +64,23 @@ fun main() {
         "/todo-list" bind GET to {
             htmlPage { todoList(dataStore.todos.values) }
         },
+        */
 
+        /*
         "/person" bind GET to {
-            htmlFragment(OK, createHTML().fragment { viewPerson(dataStore.person) })
+            htmlResponse(OK, viewPerson(), dataStore.person)
         },
         "/person/edit" bind GET to {
-            htmlFragment(OK, createHTML().fragment { editPerson(dataStore.person) })
+            htmlResponse(OK, editPerson(), dataStore.person)
         },
         "/person" bind PUT to { request ->
             dataStore.person = personLens(request)
             println("Person updated: ${dataStore.person}")
-            htmlFragment(OK, createHTML().fragment { viewPerson(dataStore.person) })
+            htmlResponse(OK, viewPerson(), dataStore.person)
         },
-
+        */
+        
+        /*
         "/contacts/activate" bind PUT to { request ->
             activateOrDeactivateContact(request, true, dataStore)
         },
@@ -131,7 +124,7 @@ fun main() {
                 Response(OK)
             } ?: Response(NOT_FOUND)
         },
-
+  */
         "/assets" bind static(ResourceLoader.Classpath("/assets")),
 
         htmxWebjars(),
@@ -144,7 +137,7 @@ fun main() {
     }.then(app).asServer(SunHttp(port)).start()
     println("Listening on $port")
 }
-
+/*
 private fun activateOrDeactivateContact(request: Request, activate: Boolean, dataStore: DataStore): Response {
     val ids = idsLens(request)
     println("${if (activate) "Activating" else "Deactivating"} contacts: $ids")
@@ -165,3 +158,4 @@ private fun activateOrDeactivateContact(request: Request, activate: Boolean, dat
             )
         })
 }
+*/

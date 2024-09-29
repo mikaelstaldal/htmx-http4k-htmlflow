@@ -1,4 +1,4 @@
-package nu.staldal.htmxhttp4kdsl
+package nu.staldal.htmxhttp4khtmlflow
 
 import org.http4k.routing.ResourceLoader
 import org.http4k.routing.static

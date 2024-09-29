@@ -1,15 +1,11 @@
-package nu.staldal.htmxhttp4kdsl
+package nu.staldal.htmxhttp4khtmlflow
 
-import kotlinx.html.HTML
-import kotlinx.html.UL
-import kotlinx.html.a
-import kotlinx.html.h3
-import kotlinx.html.li
-import kotlinx.html.ul
+import htmlflow.*
+import org.xmlet.htmlapifaster.Ul
 
-fun HTML.index() {
-    page("Examples") {
-        h3 { +"htmx UI" }
+fun index() =
+    page<Unit>("Examples") {
+        h3 { text("htmx UI") }
         ul {
             menuItem("/click-to-edit", "Click to edit")
             menuItem("/bulk-update", "Bulk update")
@@ -18,18 +14,17 @@ fun HTML.index() {
             menuItem("/value-select", "Value select")
             menuItem("/modal-dialog", "Modal dialog using Bootstrap")
         }
-        h3 { +"Complete use cases" }
+        h3 { text("Complete use cases") }
         ul {
             menuItem("/todo-list", "To do list")
         }
     }
-}
 
-fun UL.menuItem(url: String, text: String) {
+fun Ul<*>.menuItem(url: String, text: String) {
     li {
         a {
-            href = url
-            +text
+            attrHref(url)
+            text(text)
         }
     }
 }
